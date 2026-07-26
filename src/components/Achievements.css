@@ -1,0 +1,104 @@
+.achievements__grid {
+  display: grid;
+  gap: 48px;
+}
+
+.achievement-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.achievement-list li {
+  position: relative;
+  padding-left: 26px;
+  color: var(--text-mid);
+  line-height: 1.6;
+}
+
+.achievement-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 10px;
+  height: 10px;
+  background: var(--coral);
+  transform: rotate(45deg);
+}
+
+.side-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.edu-card {
+  background: var(--ink-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px;
+}
+
+.edu-card h3 {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-low);
+  margin-bottom: 18px;
+}
+
+.edu-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 18px;
+}
+
+.edu-item:last-child {
+  margin-bottom: 0;
+}
+
+.edu-item__period {
+  font-family: var(--font-hand);
+  color: var(--periwinkle);
+  font-size: 1.05rem;
+}
+
+.edu-item strong {
+  font-size: 1.05rem;
+}
+
+.edu-item p {
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.interest-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.interest-tag {
+  font-family: var(--font-hand);
+  font-size: 1.05rem;
+  background: var(--sticky);
+  color: var(--paper-ink);
+  padding: 6px 14px;
+  border-radius: 3px;
+  transform: rotate(-2deg);
+}
+
+.interest-tag:nth-child(even) {
+  transform: rotate(2deg);
+}
+
+@media (min-width: 860px) {
+  .achievements__grid {
+    grid-template-columns: 1.3fr 1fr;
+  }
+}
