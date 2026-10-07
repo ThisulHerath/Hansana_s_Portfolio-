@@ -34,4 +34,21 @@
 .hero__bottom a span { margin-left: 24px; color: var(--highlighter); }
 @keyframes board-drift { 0%, 100% { transform: translateY(0) rotate(var(--tilt)); } 50% { transform: translateY(-10px) rotate(var(--tilt)); } }
 @media (max-width: 1000px) { .hero__name { font-size: clamp(4rem, 9vw, 6.2rem); } .board__note { width: 195px; padding: 22px; } .board__note strong { font-size: 1.5rem; } .board__orbit { width: 270px; height: 300px; } }
-@media (max-width: 760px) { .hero { min-height: auto; padding-top: 24px; } .hero__layout { grid-template-columns: 1fr; padding: 42px 0 30px; gap: 40px; } .hero__meta > span:last-child { font-size: .52rem; text-align: right; max-width: 130px; line-height: 1.6; } .hero__name { font-size: clamp(3.7rem, 15vw, 6.5rem); } .hero__board { min-height: 330px; max-width: 400px; width: 100%; margin: 0 auto; } .board__note--paper { top: 115px; right: 8px; } .board__note--lime { top: 15px; left: 12px; } .board__label { bottom: 5px; left: 32%; } .hero__bottom { font-size: .52rem; } .hero__bottom a { font-size: .65rem; } .hero__bottom a span { margin-left: 5px; } }
+@media (max-width: 760px) {
+  .hero { min-height: auto; padding-top: 24px; }
+  .hero__layout { grid-template-columns: 1fr; padding: 42px 0 30px; gap: 40px; }
+  .hero__meta > span:last-child { font-size: .52rem; text-align: right; max-width: 130px; line-height: 1.6; }
+  .hero__name { font-size: clamp(3.7rem, 15vw, 6.5rem); }
+  /* Keep notes and their caption in flow so wrapped copy cannot cover the label. */
+  .hero__board { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start; min-height: 0; max-width: 400px; width: 100%; margin: 0 auto; padding: 34px 8px 0; }
+  .board__note { position: relative; inset: auto; width: 100%; padding: 20px 16px; }
+  .board__note strong { font-size: clamp(1.1rem, 4.8vw, 1.45rem); }
+  .board__note small { font-size: .6rem; line-height: 1.6; margin-top: 22px; }
+  .board__note--lime { --tilt: -5deg; }
+  .board__note--paper { --tilt: 5deg; margin-top: 60px; }
+  .board__label { position: relative; inset: auto; grid-column: 1 / -1; margin-top: 8px; padding-left: 60px; transform: none; }
+  .board__spark { font-size: 3rem; bottom: -3px; left: 8px; }
+  .hero__bottom { font-size: .52rem; }
+  .hero__bottom a { font-size: .65rem; }
+  .hero__bottom a span { margin-left: 5px; }
+}
