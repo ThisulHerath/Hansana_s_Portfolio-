@@ -1,4 +1,5 @@
 import { profile } from "../data/content";
+import { useEffect, useRef, useState } from 'react';
 import "./Navbar.css";
 
 const links = [
@@ -9,16 +10,26 @@ const links = [
   { href: "#contact", label: "Contact" },
 ];
 
-export default function Navbar() {
+export default function Navbar({ activeSection }) {
+  const [open, setOpen] = useState(false);
+  const menuRef = useRef(null);
+  useEffect(() => {
+    const close = (event) => { if (event.key === 'Escape') { setOpen(false); if (menuRef.current?.getAttribute('aria-expanded') === 'true') menuRef.current.focus(); } };
+    const resize = () => { if (window.innerWidth >= 760) setOpen(false); };
+    window.addEventListener('keydown', close);
+    window.addEventListener('resize', resize);
+    return () => { window.removeEventListener('keydown', close); window.removeEventListener('resize', resize); };
+  }, []);
   return (
     <header className="navbar">
       <div className="container navbar__inner">
         <a href="#top" className="navbar__brand">
           HP<span>.</span>
         </a>
-        <nav className="navbar__links">
+        <button ref={menuRef} className="navbar__menu" aria-expanded={open} aria-controls="primary-navigation" onClick={() => setOpen(!open)}>{open ? 'Close ×' : 'Menu +'}</button>
+        <nav id="primary-navigation" aria-label="Main navigation" className={`navbar__links ${open ? 'is-open' : ''}`}>
           {links.map((link) => (
-            <a key={link.href} href={link.href}>
+            <a key={link.href} href={link.href} aria-current={activeSection === link.href.slice(1) ? 'location' : undefined} onClick={() => setOpen(false)}>
               {link.label}
             </a>
           ))}

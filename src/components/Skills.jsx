@@ -14,7 +14,7 @@ export default function Skills() {
               <h3>{group.heading}</h3>
               <div className="skills-tags">
                 {group.skills.map((skill) => (
-                  <span className="skill-tag" key={skill}>
+                  <span className="skill-tag" key={skill} data-float-target>
                     {skill}
                   </span>
                 ))}

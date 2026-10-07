@@ -17,13 +17,13 @@
   --paper-ink: #221d10;
   --text-hi: #f4f4f2;
   --text-mid: #b9bdd9;
-  --text-low: #7c81a3;
+  --text-low: #a1a7c8;
   --line: rgba(244, 244, 242, 0.12);
 
   /* Type */
-  --font-display: "Big Shoulders Display", sans-serif;
-  --font-body: "Work Sans", sans-serif;
-  --font-hand: "Caveat", cursive;
+  --font-display: "Arial", "Helvetica Neue", sans-serif;
+  --font-body: "Segoe UI", "Helvetica Neue", sans-serif;
+  --font-hand: "Segoe UI", sans-serif;
 
   /* Layout */
   --page-max: 1180px;
@@ -86,15 +86,17 @@ img {
 .section {
   padding: var(--section-pad) 0;
   position: relative;
+  scroll-margin-top: 90px;
 }
 
 .eyebrow {
   font-family: var(--font-hand);
-  font-size: 1.35rem;
+  font-size: 0.7rem;
   color: var(--highlighter);
   display: inline-block;
-  transform: rotate(-2deg);
-  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 16px;
 }
 
 /* Reusable pinned sticky-note tag — the signature element */
@@ -137,7 +139,8 @@ img {
 
 /* Visible keyboard focus */
 a:focus-visible,
-button:focus-visible {
+button:focus-visible,
+summary:focus-visible {
   outline: 2px solid var(--highlighter);
   outline-offset: 3px;
   border-radius: 4px;
@@ -146,4 +149,8 @@ button:focus-visible {
 ::selection {
   background: var(--highlighter);
   color: var(--paper-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
 }

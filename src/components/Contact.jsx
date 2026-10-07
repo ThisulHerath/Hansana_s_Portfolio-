@@ -7,15 +7,16 @@ export default function Contact() {
       <div className="container contact__inner">
         <p className="eyebrow">let's talk</p>
         <h2 className="contact__heading">
-          Looking for an intern who'll actually pick up the logistics folder.
+          Good ideas start with<br />a conversation.
         </h2>
+        <p className="contact__intro">Looking for a marketing intern who brings creative ideas and follows through? I'd love to hear from you.</p>
 
         <div className="contact__actions">
           <a
             href={`mailto:${profile.email}`}
             className="btn btn--primary"
           >
-            Email me
+            Let's talk ↗
           </a>
           <a
             href={profile.linkedin}
@@ -27,6 +28,7 @@ export default function Contact() {
           </a>
           <a
             href={profile.resumeFile}
+            download
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn--ghost"
@@ -37,9 +39,10 @@ export default function Contact() {
 
         <footer className="contact__footer">
           <span>{profile.location}</span>
-          <span>{profile.email}</span>
-          <span>{profile.phone}</span>
+          <a href={`mailto:${profile.email}`}>{profile.email}</a>
+          <a href={`tel:${profile.phone.replace(/\s/g, '')}`}>{profile.phone}</a>
         </footer>
+        <div className="footer-credit"><a href="#top">HP<span>.</span></a><span>© {new Date().getFullYear()} {profile.name}</span><a href="#top">Back to top ↑</a></div>
       </div>
     </section>
   );
