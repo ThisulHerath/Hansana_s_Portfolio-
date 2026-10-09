@@ -19,18 +19,10 @@ main:focus { outline: none; }
 .motion-toggle { position: fixed; bottom: 16px; right: 16px; z-index: 40; min-height: 40px; border: 1px solid var(--line); border-radius: 30px; background: #12162be8; color: var(--text-mid); padding: 10px 14px; font-size: .65rem; backdrop-filter: blur(8px); }
 .skip-link { position: fixed; top: 8px; left: 12px; transform: translateY(-150%); background: var(--highlighter); color: var(--ink); padding: 14px 18px; z-index: 100; }
 .skip-link:focus { transform: translateY(0); }
-.navbar__menu { display: none; border: 1px solid var(--line); background: transparent; color: var(--text-hi); border-radius: 6px; min-height: 42px; padding: 8px 14px; }
-.navbar__links a[aria-current] { color: var(--highlighter); }
-.navbar__links a { font-size: .78rem; }
-.navbar__links { gap: 26px; }
-.navbar__cta { font-size: .75rem; min-height: 42px; display: inline-flex; align-items: center; }
 .skill-tag { cursor: default; line-height: 1.5; }
 .timeline__period, .edu-item__period { font-size: .82rem; }
 .timeline__body h3 { letter-spacing: -.025em; }
 @media (max-width: 759px) {
-  .navbar__menu { display: block; margin-left: auto; margin-right: 10px; }
-  .navbar__links.is-open { display: flex; position: absolute; top: 72px; left: 0; right: 0; flex-direction: column; gap: 0; padding: 12px 24px 20px; background: #12162bf5; border-bottom: 1px solid var(--line); box-shadow: 0 15px 30px #0004; }
-  .navbar__links a { padding: 14px 0; font-size: .9rem; }
   .container { padding: 0 20px; }
   .section__heading { margin-bottom: 32px; }
   .stat-card { padding: 18px; min-height: 140px; }
