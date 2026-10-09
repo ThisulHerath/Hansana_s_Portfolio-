@@ -21,9 +21,9 @@
   --line: rgba(244, 244, 242, 0.12);
 
   /* Type */
-  --font-display: "Arial", "Helvetica Neue", sans-serif;
-  --font-body: "Segoe UI", "Helvetica Neue", sans-serif;
-  --font-hand: "Segoe UI", sans-serif;
+  --font-display: "Space Grotesk Variable", "Helvetica Neue", sans-serif;
+  --font-body: "Manrope Variable", "Segoe UI", sans-serif;
+  --font-hand: "Manrope Variable", "Segoe UI", sans-serif;
 
   /* Layout */
   --page-max: 1180px;

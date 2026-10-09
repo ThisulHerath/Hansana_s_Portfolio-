@@ -5,7 +5,7 @@
 .availability { display: inline-flex; align-items: center; gap: 9px; letter-spacing: 0; font-size: .75rem; border: 1px solid var(--line); border-radius: 24px; padding: 9px 13px; }
 .availability i { width: 6px; height: 6px; background: var(--highlighter); border-radius: 50%; box-shadow: 0 0 12px #e8ff6b60; }
 .hero__layout { display: grid; grid-template-columns: 1.3fr 1fr; align-items: center; gap: 24px; padding: 70px 0 75px; }
-.hero__name { font-size: clamp(4rem, 8.8vw, 7.7rem); line-height: .96; font-weight: 850; letter-spacing: -.055em; margin: 18px 0 24px; }
+.hero__name { font-size: clamp(4rem, 8.8vw, 7.7rem); line-height: .96; font-weight: 700; letter-spacing: -.065em; margin: 18px 0 24px; }
 .hero__name > span:first-of-type { color: var(--highlighter); }
 .hero__asterisk { display: inline-block; font-size: .48em; vertical-align: top; margin-left: 10px; color: var(--coral); }
 .hero__role { max-width: 430px; line-height: 1.7; font-size: .92rem; color: var(--text-hi); }
@@ -22,7 +22,7 @@
 .board__orbit::after { content: ''; position: absolute; inset: 30px -30px; border: 1px dashed #e8ff6b20; border-radius: 50%; transform: rotate(-35deg); }
 .board__note { position: absolute; width: 230px; padding: 26px; border-radius: 2px; box-shadow: 0 20px 50px #0003; color: var(--paper-ink); animation: board-drift 8s ease-in-out infinite; }
 .board__note span { display: block; font-size: .6rem; letter-spacing: .12em; margin-bottom: 18px; }
-.board__note strong { display: block; font-size: 1.8rem; line-height: 1.1; letter-spacing: -.06em; }
+.board__note strong { display: block; font-family: var(--font-display); font-size: 1.8rem; line-height: 1.1; letter-spacing: -.045em; }
 .board__note small { display: block; font-size: .63rem; margin-top: 28px; border-top: 1px solid #221d1026; padding-top: 12px; }
 .board__note--lime { background: var(--highlighter); top: 30px; left: 4%; --tilt: -10deg; z-index: 2; }
 .board__note--paper { background: var(--sticky); top: 158px; right: 0; --tilt: 9deg; animation-delay: -3s; z-index: 3; }
