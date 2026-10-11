@@ -44,9 +44,50 @@
   color: var(--text-low);
 }
 
+.about__portrait {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  align-self: center;
+  margin: 0 auto;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(232, 255, 107, 0.2);
+  border-radius: 24px;
+  background: var(--ink);
+  box-shadow: 0 24px 70px #0003;
+}
+.about__portrait-image { position: relative; aspect-ratio: 1 / 1.04; overflow: hidden; }
+.about__portrait-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 36%;
+  filter: saturate(.65) contrast(1.04);
+}
+.about__portrait-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #12162b88, transparent 28%, transparent 55%, var(--ink) 100%), linear-gradient(90deg, #12162b40, transparent 30%, transparent 75%, #12162b40);
+  pointer-events: none;
+}
+.about__portrait-index { position: absolute; top: 22px; left: 22px; right: 22px; color: var(--text-hi); font-size: .55rem; letter-spacing: .14em; }
+.about__portrait-spark { position: absolute; right: 24px; bottom: 94px; color: var(--highlighter); font-size: 3.5rem; line-height: 1; }
+.about__portrait-caption { position: relative; margin-top: -22px; padding: 0 24px 24px; display: flex; justify-content: space-between; align-items: end; gap: 12px; }
+.about__portrait-caption strong { display: block; font-family: var(--font-display); font-size: 1.25rem; letter-spacing: -.03em; font-weight: 600; }
+.about__portrait-caption small { display: block; color: var(--text-mid); font-size: .7rem; line-height: 1.6; margin-top: 5px; }
+.about__portrait-location { color: var(--highlighter); font-size: .55rem; letter-spacing: .1em; white-space: nowrap; padding-bottom: 3px; }
+
 @media (min-width: 860px) {
   .about__grid {
-    grid-template-columns: 1.4fr 1fr;
+    grid-template-columns: 1.2fr 1fr;
     align-items: start;
   }
+  .about .stat-grid { grid-column: 1 / -1; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+@media (max-width: 480px) {
+  .about__portrait-caption { padding: 0 18px 22px; flex-wrap: wrap; }
+  .about__portrait-index { left: 18px; top: 18px; font-size: .5rem; }
 }
