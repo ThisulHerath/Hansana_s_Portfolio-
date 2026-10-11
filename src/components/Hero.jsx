@@ -20,14 +20,14 @@ export default function Hero() {
         <p className="hero__tagline">{profile.tagline}</p>
 
         <div className="hero__actions">
-          <a href="#work" className="btn btn--primary">Explore my work <span aria-hidden="true">↗</span></a>
+          <a href="#work" className="btn btn--primary"><span>Explore my work</span><svg className="hero__button-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" /></svg></a>
           <a
             href={profile.resumeFile}
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn--ghost"
           >
-            View resume
+            <span>View resume</span><svg className="hero__button-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" /><path d="M14 2v6h6M8 13h8M8 17h5" /></svg>
           </a>
         </div>
         </div><figure className="hero__portrait" data-float-target>
