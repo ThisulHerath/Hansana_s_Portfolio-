@@ -105,3 +105,8 @@ All biography, academic dates and accomplishments were retained from the supplie
 ## Verification completed
 
 Production build and lint passed. Browser checks at 320, 375, 390, 768, 1024 and 1440 pixels found no horizontal document overflow. Mobile menu, section highlighting, project disclosure, pause/resume, static reduced-motion rendering and the PDF response passed, with no page errors. Desktop and mobile screenshots are included. Dependency audit reports zero known vulnerabilities after compatible transitive dependency fixes.
+
+## Page animations
+
+src/hooks/usePageMotion.js adds one-time staggered entrances using IntersectionObserver and the Web Animations API. Content remains visible without animation support. src/motion.css defines eased card, button and skill interactions. Touch hover motion is suppressed. Pause and live reduced-motion changes cancel entrances immediately; revealed elements do not replay on resume. No animation library is required.
+

@@ -7,15 +7,19 @@ import Skills from "./components/Skills";
 import Achievements from "./components/Achievements";
 import Contact from "./components/Contact";
 import "./App.css";
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import usePageMotion from './hooks/usePageMotion';
+import './motion.css';
 import FloatingBackground from './components/FloatingBackground';
 import useScrollSection from './hooks/useScrollSection';
 
 export default function App() {
   const { activeSection, scene } = useScrollSection();
   const [paused, setPaused] = useState(false);
+  const pageRef = useRef(null);
+  usePageMotion(pageRef, paused);
   return (
-    <div className="portfolio" data-motion={paused ? 'paused' : 'playing'}>
+    <div ref={pageRef} className="portfolio" data-motion={paused ? 'paused' : 'playing'}>
       <FloatingBackground scene={scene} paused={paused} />
       <a className="skip-link" href="#main">Skip to content</a>
       <Navbar activeSection={activeSection} />
