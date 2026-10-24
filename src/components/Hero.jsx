@@ -8,13 +8,14 @@ export default function Hero() {
       <div className="container hero__content">
         <div className="hero__meta"><span className="availability"><i /> Open to internships</span><span>COLOMBO, LK · PORTFOLIO / 2026</span></div>
         <div className="hero__layout"><div className="hero__intro">
-        <p className="eyebrow">A little strategy. A lot of doing.</p>
+        <p className="eyebrow">Marketing student. Creative thinker. Doer.</p>
         <h1 className="hero__name">
           HANSANA
           <br />
           <span>PERERA</span><span className="hero__asterisk" aria-hidden="true">✳</span>
         </h1>
         <p className="hero__role">
+          <span className="hero__student">Learning brands. Building ideas.</span>
           {profile.role} · {profile.university}
         </p>
         <p className="hero__tagline">{profile.tagline}</p>

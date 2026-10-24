@@ -12,6 +12,7 @@ import usePageMotion from './hooks/usePageMotion';
 import './motion.css';
 import FloatingBackground from './components/FloatingBackground';
 import useScrollSection from './hooks/useScrollSection';
+import CampaignStrip from './components/CampaignStrip';
 
 export default function App() {
   const { activeSection, scene } = useScrollSection();
@@ -25,6 +26,7 @@ export default function App() {
       <Navbar activeSection={activeSection} />
       <main id="main" tabIndex={-1}>
         <Hero />
+        <CampaignStrip />
         <About />
         <Projects />
         <Experience />

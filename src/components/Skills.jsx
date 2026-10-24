@@ -6,7 +6,7 @@ export default function Skills() {
     <section id="skills" className="section skills">
       <div className="container">
         <p className="eyebrow">the toolkit</p>
-        <h2 className="section__heading">Skills</h2>
+        <h2 className="section__heading">A marketer’s growing toolkit.</h2>
 
         <div className="skills-grid">
           {skillGroups.map((group) => (

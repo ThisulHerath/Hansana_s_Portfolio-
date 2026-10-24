@@ -35,7 +35,7 @@ export default function usePageMotion(root, paused) {
           observer.unobserve(entry.target);
         });
       }, { threshold: 0.08 });
-      page.querySelectorAll('.hero__meta, .hero__intro > *, .hero__portrait, .hero__bottom, .section .eyebrow, .section h2, .about__paragraph, .stat-card, .project-card, .timeline__item, .skills-group, .achievement-list li, .edu-card, .interest-tags, .contact__intro, .contact__actions, .contact__footer').forEach(element => observer.observe(element));
+      page.querySelectorAll('.hero__meta, .hero__intro > *, .hero__portrait, .hero__bottom, .section .eyebrow, .section h2, .about__paragraph, .stat-card, .marketing-process__heading, .marketing-step, .project-card, .timeline__item, .skills-group, .achievement-list li, .edu-card, .interest-tags, .contact__intro, .contact__actions, .contact__footer').forEach(element => observer.observe(element));
     };
     const focus = event => {
       animations.forEach((animation, element) => {
