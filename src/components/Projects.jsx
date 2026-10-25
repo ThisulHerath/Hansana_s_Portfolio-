@@ -1,5 +1,6 @@
 import { projects } from "../data/content";
 import "./Projects.css";
+import ProjectDetails from './ProjectDetails';
 
 export default function Projects() {
   return (
@@ -16,12 +17,12 @@ export default function Projects() {
               <span className="project-card__tag">{project.tag}</span>
               <h3>{project.title}</h3>
               <p>{project.description}</p>
-              <details className="project-details"><summary>My contribution <span aria-hidden="true">↗</span></summary><p>{[
+              <ProjectDetails>{[
                 'Designed event artwork and promotional materials, connecting the concept boards to the visual identity used at the event.',
                 'Created the artwork and visual content that brought the campus quiz event to life.',
                 'Led the editorial direction and cover-to-cover design, working with the department team through publication and launch.',
                 'Supervised and contributed to this Marketing Circle fundraising project as Vice President.'
-              ][i]}</p></details>
+              ][i]}</ProjectDetails>
               </div>
             </article>
           ))}

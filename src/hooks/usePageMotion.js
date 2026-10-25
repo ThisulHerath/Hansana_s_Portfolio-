@@ -19,9 +19,9 @@ export default function usePageMotion(root, paused) {
       if (revealed.has(element)) return;
       revealed.add(element);
       const animation = element.animate([
-        { opacity: 0, translate: '0 20px' },
+        { opacity: 0, translate: '0 14px' },
         { opacity: 1, translate: '0 0' },
-      ], { duration: 680, delay, easing: 'cubic-bezier(.22, 1, .36, 1)', fill: 'backwards' });
+      ], { duration: 600, delay, easing: 'cubic-bezier(.16, 1, .3, 1)', fill: 'backwards' });
       animations.set(element, animation);
       animation.onfinish = () => { animations.delete(element); animation.cancel(); };
     };
@@ -31,7 +31,7 @@ export default function usePageMotion(root, paused) {
       observer = new IntersectionObserver(entries => {
         const visible = entries.filter(entry => entry.isIntersecting);
         visible.forEach((entry, index) => {
-          reveal(entry.target, Math.min(index * 65, 195));
+          reveal(entry.target, Math.min(index * 50, 150));
           observer.unobserve(entry.target);
         });
       }, { threshold: 0.08 });

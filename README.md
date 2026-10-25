@@ -110,3 +110,6 @@ Production build and lint passed. Browser checks at 320, 375, 390, 768, 1024 and
 
 src/hooks/usePageMotion.js adds one-time staggered entrances using IntersectionObserver and the Web Animations API. Content remains visible without animation support. src/motion.css defines eased card, button and skill interactions. Touch hover motion is suppressed. Pause and live reduced-motion changes cancel entrances immediately; revealed elements do not replay on resume. No animation library is required.
 
+
+ProjectDetails.jsx now uses an accessible button and an inert collapsible panel with CSS grid height transitions, supporting opening, closing and rapid reversals. The existing reduced-motion and pause controls suppress these transitions. Navigation underlines, a subtle desktop portrait zoom and shorter staggered reveals provide consistent motion timing.
+
