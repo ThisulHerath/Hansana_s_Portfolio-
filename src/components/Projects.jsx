@@ -1,11 +1,13 @@
 import { projects } from "../data/content";
 import "./Projects.css";
 import ProjectDetails from './ProjectDetails';
+import LiquidAccent from './LiquidAccent';
 
 export default function Projects() {
   return (
     <section id="work" className="section projects">
       <div className="container">
+        <LiquidAccent className="projects__splash" tone="coral" />
         <p className="eyebrow">the portfolio</p>
         <h2 className="section__heading">Campaigns & publications</h2>
 

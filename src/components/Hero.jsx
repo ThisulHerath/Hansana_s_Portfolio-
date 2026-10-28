@@ -1,11 +1,13 @@
 import { profile } from "../data/content";
 import "./Hero.css";
+import LiquidAccent from './LiquidAccent';
 
 export default function Hero() {
   return (
     <section id="top" className="hero">
       <div className="hero__grid" aria-hidden="true" />
       <div className="container hero__content">
+        <LiquidAccent className="hero__splash" />
         <div className="hero__meta"><span className="availability"><i /> Open to internships</span><span>COLOMBO, LK · PORTFOLIO / 2026</span></div>
         <div className="hero__layout"><div className="hero__intro">
         <p className="eyebrow">Marketing student. Creative thinker. Doer.</p>

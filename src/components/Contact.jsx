@@ -1,10 +1,12 @@
 import { profile } from "../data/content";
 import "./Contact.css";
+import LiquidAccent from './LiquidAccent';
 
 export default function Contact() {
   return (
     <section id="contact" className="section contact">
       <div className="container contact__inner">
+        <LiquidAccent className="contact__splash" tone="violet" />
         <p className="eyebrow">let's talk</p>
         <h2 className="contact__heading">
           Good ideas start with<br />a conversation.

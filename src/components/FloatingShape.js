@@ -24,12 +24,52 @@ export function drawShape(ctx, shape, radius, theme, time, index, reaction) {
     const waveA = Math.sin(angle * Math.floor(theme.lobes) + time + shape.phase);
     const waveB = Math.sin(angle * Math.ceil(theme.lobes) + time + shape.phase);
     const wave = waveA + (waveB - waveA) * (theme.lobes % 1);
-    const r = radius * (1 + wave * 0.1);
+    const r = radius * (1 + wave * (index % 2 ? 0.17 : 0.1));
     const x = Math.cos(angle) * r;
     const y = Math.sin(angle) * r;
     if (step === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
   }
   ctx.closePath();
+  if (index % 2 === 1) {
+    // Layered highlights stay inside the liquid outline, without expensive blur passes.
+    const body = ctx.createLinearGradient(-radius, -radius, radius, radius);
+    body.addColorStop(0, `rgba(${rgb},0.18)`);
+    body.addColorStop(0.28, `rgba(${rgb},0.6)`);
+    body.addColorStop(0.56, `rgba(${rgb},0.12)`);
+    body.addColorStop(0.82, `rgba(${rgb},0.38)`);
+    body.addColorStop(1, `rgba(${rgb},0.08)`);
+    ctx.fillStyle = body;
+    ctx.fill();
+    ctx.strokeStyle = `rgba(${rgb},0.5)`;
+    ctx.stroke();
+    ctx.save();
+    ctx.clip();
+    const shine = ctx.createRadialGradient(-radius * .35, -radius * .5, 0, -radius * .35, -radius * .5, radius * .8);
+    shine.addColorStop(0, 'rgba(255,255,255,0.75)');
+    shine.addColorStop(.23, 'rgba(255,255,255,0.22)');
+    shine.addColorStop(1, 'rgba(255,255,255,0)');
+    ctx.fillStyle = shine;
+    ctx.fillRect(-radius * 1.3, -radius * 1.3, radius * 2.6, radius * 2.6);
+    ctx.beginPath();
+    ctx.ellipse(-radius * .23, -radius * .55, radius * .36, radius * .09, -.4, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(255,255,255,0.45)';
+    ctx.fill();
+    ctx.restore();
+    for (let drop = 0; drop < 2; drop++) {
+      const angle = shape.phase + drop * 2.2 + time * .15;
+      const x = Math.cos(angle) * radius * (1.6 + drop * .2);
+      const y = Math.sin(angle) * radius * 1.45;
+      const size = radius * (.12 - drop * .035);
+      const bead = ctx.createRadialGradient(x - size * .3, y - size * .4, 0, x, y, size);
+      bead.addColorStop(0, 'rgba(255,255,255,0.8)');
+      bead.addColorStop(.3, `rgba(${rgb},0.5)`);
+      bead.addColorStop(1, `rgba(${rgb},0.05)`);
+      ctx.beginPath(); ctx.arc(x, y, size, 0, Math.PI * 2);
+      ctx.fillStyle = bead; ctx.fill();
+    }
+    ctx.restore();
+    return;
+  }
   const gradient = ctx.createRadialGradient(-radius * 0.35, -radius * 0.4, 0, 0, 0, radius * 1.2);
   gradient.addColorStop(0, `rgba(${rgb},${theme.glass + reaction * 0.08})`);
   gradient.addColorStop(0.6, `rgba(${rgb},0.035)`);

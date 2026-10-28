@@ -1,0 +1,19 @@
+.liquid-accent { --liquid-light: #e8ff6b; --liquid-dark: #465f31; position: absolute; width: clamp(90px, 12vw, 160px); pointer-events: none; z-index: 0; }
+.liquid-accent--violet { --liquid-light: #c4b9ff; --liquid-dark: #54427e; }
+.liquid-accent--coral { --liquid-light: #ffba9c; --liquid-dark: #8b3f51; }
+.liquid-accent svg { width: 100%; height: auto; display: block; overflow: visible; }
+.liquid-accent__body { transform-origin: 120px 120px; animation: liquid-bob 10s ease-in-out infinite; }
+.liquid-accent__drop { animation: liquid-drop 7s ease-in-out infinite; }
+.liquid-accent__drop--small { animation-delay: -3s; }
+.hero__splash { right: -14px; top: 85px; width: 115px; z-index: 3; }
+.projects__splash { top: -24px; right: 24px; rotate: 18deg; }
+.contact__splash { top: -65px; left: 0; rotate: -20deg; width: 125px; }
+.projects .section__heading, .contact__heading { position: relative; z-index: 1; }
+@keyframes liquid-bob { 0%, 100% { transform: translateY(0) rotate(-6deg) scale(1); } 50% { transform: translateY(-12px) rotate(6deg) scale(1.035); } }
+@keyframes liquid-drop { 0%, 100% { translate: 0 0; } 50% { translate: 4px -9px; } }
+@media (max-width: 760px) {
+  .hero__splash { display: none; }
+  .projects__splash { width: 65px; right: 16px; top: -35px; opacity: .75; }
+  .contact__splash { width: 65px; top: -55px; left: 14px; }
+}
+@media (prefers-reduced-motion: reduce) { .liquid-accent * { animation: none !important; } }
