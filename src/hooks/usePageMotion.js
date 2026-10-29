@@ -19,9 +19,9 @@ export default function usePageMotion(root, paused) {
       if (revealed.has(element)) return;
       revealed.add(element);
       const animation = element.animate([
-        { opacity: 0, translate: '0 14px' },
+        { opacity: 0, translate: '0 10px' },
         { opacity: 1, translate: '0 0' },
-      ], { duration: 600, delay, easing: 'cubic-bezier(.16, 1, .3, 1)', fill: 'backwards' });
+      ], { duration: 560, delay, easing: 'cubic-bezier(.22, .61, .36, 1)', fill: 'backwards' });
       animations.set(element, animation);
       animation.onfinish = () => { animations.delete(element); animation.cancel(); };
     };
@@ -31,10 +31,12 @@ export default function usePageMotion(root, paused) {
       observer = new IntersectionObserver(entries => {
         const visible = entries.filter(entry => entry.isIntersecting);
         visible.forEach((entry, index) => {
-          reveal(entry.target, Math.min(index * 50, 150));
+          // Start just before entry; do not fade out content already read on screen.
+          const alreadyVisible = entry.boundingClientRect.top < 0;
+          if (!alreadyVisible) reveal(entry.target, Math.min(index * 40, 120));
           observer.unobserve(entry.target);
         });
-      }, { threshold: 0.08 });
+      }, { threshold: 0, rootMargin: '0px 0px 48px 0px' });
       page.querySelectorAll('.hero__meta, .hero__intro > *, .hero__portrait, .hero__bottom, .section .eyebrow, .section h2, .about__paragraph, .stat-card, .marketing-process__heading, .marketing-step, .project-card, .timeline__item, .skills-group, .achievement-list li, .edu-card, .interest-tags, .contact__intro, .contact__actions, .contact__footer').forEach(element => observer.observe(element));
     };
     const focus = event => {

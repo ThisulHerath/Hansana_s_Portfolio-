@@ -101,15 +101,15 @@
     background: rgba(18, 22, 43, 0.97);
     box-shadow: 0 16px 40px #0004;
     opacity: 0;
-    transform: translateY(-8px) scale(.985);
+    transform: translateY(-6px);
     transform-origin: top right;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity 240ms ease, transform 280ms cubic-bezier(.22, 1, .36, 1), visibility 0s 280ms;
+    transition: opacity 220ms ease, transform 300ms cubic-bezier(.22, .61, .36, 1), visibility 0s 300ms;
   }
   .navbar__links.is-open {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
     visibility: visible;
     pointer-events: auto;
     transition-delay: 0s;

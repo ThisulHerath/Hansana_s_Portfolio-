@@ -4,6 +4,12 @@ import './FloatingBackground.css';
 
 export default function FloatingBackground({ scene, paused }) {
   const canvasRef = useRef(null);
+  const pausedRef = useRef(paused);
+  const restartRef = useRef(null);
+  useEffect(() => {
+    pausedRef.current = paused;
+    restartRef.current?.();
+  }, [paused]);
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
@@ -12,8 +18,11 @@ export default function FloatingBackground({ scene, paused }) {
     const compact = matchMedia('(max-width: 760px), (pointer: coarse)');
     let width, height, shapes, frame = 0, last = 0, time = 0;
     let theme = { ...THEMES.top, color: [...THEMES.top.color] };
-    const staticMode = () => paused || reduced.matches;
+    const staticMode = () => pausedRef.current || reduced.matches;
     const resize = () => {
+      const oldWidth = width;
+      const oldHeight = height;
+      const oldShapes = shapes;
       width = window.innerWidth;
       height = window.innerHeight;
       const dpr = Math.min(devicePixelRatio || 1, compact.matches ? 1 : 1.5);
@@ -22,8 +31,10 @@ export default function FloatingBackground({ scene, paused }) {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       shapes = Array.from({ length: compact.matches ? 3 : 6 }, (_, i) => {
         const shape = createShape(i);
-        shape.x = width * (i === 0 ? 0.79 : (0.13 + i * 0.19) % 1);
-        shape.y = height * (i === 0 ? 0.46 : (0.15 + i * 0.27) % 1);
+        const previous = oldShapes?.[i];
+        shape.x = previous ? previous.x / oldWidth * width : width * (i === 0 ? 0.79 : (0.13 + i * 0.19) % 1);
+        shape.y = previous ? previous.y / oldHeight * height : height * (i === 0 ? 0.46 : (0.15 + i * 0.27) % 1);
+        shape.reaction = previous?.reaction || 0;
         return shape;
       });
       restart();
@@ -34,7 +45,7 @@ export default function FloatingBackground({ scene, paused }) {
       last = stamp;
       const fixed = staticMode();
       const wanted = THEMES[scene.current.section] || THEMES.top;
-      const blend = fixed ? 1 : 1 - Math.exp(-dt * 2);
+      const blend = pausedRef.current ? 0 : reduced.matches ? 1 : 1 - Math.exp(-dt * 2);
       theme.color = theme.color.map((c, i) => c + (wanted.color[i] - c) * blend);
       for (const key of ['lobes', 'speed', 'glass']) theme[key] += (wanted[key] - theme[key]) * blend;
       if (!fixed) time += dt * theme.speed;
@@ -55,16 +66,19 @@ export default function FloatingBackground({ scene, paused }) {
           x += (target.x - x) * reaction * force;
           y += (target.y - y) * reaction * force;
         }
-        if (fixed) { shape.x = x; shape.y = y; }
-        else {
+        if (!fixed) {
           // Damped spring, integrated in seconds for consistent motion on different refresh rates.
           shape.vx += ((x - shape.x) * 28 - shape.vx * 11) * dt;
           shape.vy += ((y - shape.y) * 28 - shape.vy * 11) * dt;
           shape.x += shape.vx * dt;
           shape.y += shape.vy * dt;
+        } else if (!pausedRef.current) {
+          shape.x = x;
+          shape.y = y;
         }
         const radius = i === 0 ? Math.min(width * 0.19, 245) : 22 + i * 10;
-        drawShape(ctx, shape, radius, theme, time, i, reaction);
+        if (!fixed) shape.reaction += (reaction - shape.reaction) * (1 - Math.exp(-dt * 7));
+        drawShape(ctx, shape, radius, theme, time, i, shape.reaction || 0);
       });
       if (!fixed && !document.hidden) frame = requestAnimationFrame(draw);
     };
@@ -73,6 +87,7 @@ export default function FloatingBackground({ scene, paused }) {
       last = 0;
       if (!document.hidden) frame = requestAnimationFrame(draw);
     }
+    restartRef.current = restart;
     const pointer = (event) => {
       if (staticMode()) return;
       scene.current.pointer = { x: event.clientX, y: event.clientY };
@@ -97,6 +112,7 @@ export default function FloatingBackground({ scene, paused }) {
     resize();
     return () => {
       cancelAnimationFrame(frame);
+      restartRef.current = null;
       window.removeEventListener('resize', resize);
       window.removeEventListener('scroll', scroll);
       window.removeEventListener('pointermove', pointer);
@@ -111,6 +127,6 @@ export default function FloatingBackground({ scene, paused }) {
       compact.removeEventListener('change', resize);
       clear();
     };
-  }, [scene, paused]);
+  }, [scene]);
   return <div className="floating-background" aria-hidden="true"><canvas ref={canvasRef} /></div>;
 }
