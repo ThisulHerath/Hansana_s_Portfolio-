@@ -1,0 +1,26 @@
+.christmas-atmosphere { position: fixed; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; }
+.christmas-snow { position: absolute; top: -12px; left: var(--snow-x); width: var(--snow-size); height: var(--snow-size); border-radius: 50%; background: #fff9e8; opacity: .35; animation: christmas-snowfall var(--snow-duration) linear var(--snow-delay) infinite; }
+@keyframes christmas-snowfall { from { transform: translate3d(0, -10px, 0); } to { transform: translate3d(var(--snow-drift), calc(100vh + 30px), 0); } }
+.christmas-atmosphere.is-hidden .christmas-snow { animation-play-state: paused; }
+.christmas-lights { position: relative; height: 30px; display: flex; justify-content: space-around; align-items: start; pointer-events: none; margin: -20px 0 18px; }
+.christmas-lights__wire { position: absolute; left: 0; right: 0; top: 0; height: 10px; border-bottom: 1px solid #74826870; border-radius: 0 0 50% 50%; }
+.christmas-lights i { --bulb: #ffe4a0; position: relative; margin-top: 7px; width: 6px; height: 10px; border-radius: 3px 3px 5px 5px; background: var(--bulb); box-shadow: 0 0 10px 3px color-mix(in srgb, var(--bulb) 25%, transparent); animation: christmas-glow 4s ease-in-out var(--bulb-delay) infinite alternate; }
+.christmas-lights i:nth-of-type(3n) { --bulb: #ff8e8e; }
+.christmas-lights i:nth-of-type(3n + 1) { --bulb: #cbea9e; }
+.christmas-lights i::before { content: ''; position: absolute; width: 4px; height: 4px; left: 1px; top: -3px; background: #56614d; border-radius: 1px; }
+@keyframes christmas-glow { from { opacity: .55; } to { opacity: 1; } }
+.christmas-greeting { display: flex; align-items: center; gap: 9px; font-size: .68rem; letter-spacing: .04em; color: #eed7ac; margin-bottom: 18px; }
+.christmas-greeting > span { color: #ff9991; font-size: 1.2rem; }
+.christmas-edition .hero__portrait { border-color: #ddc58d50; }
+.christmas-edition .hero__portrait-mark { color: #ffe1a1; }
+.christmas-edition .liquid-accent--coral { --liquid-light: #ff9890; --liquid-dark: #813747; }
+@media (max-width: 760px) {
+  .christmas-lights { margin-top: -12px; height: 26px; margin-bottom: 12px; }
+  .christmas-lights i:nth-of-type(even) { display: none; }
+  .christmas-snow:nth-child(n + 9) { display: none; }
+  .christmas-greeting { font-size: .61rem; gap: 7px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .christmas-snow { display: none; }
+  .christmas-lights i { animation: none; opacity: .8; }
+}

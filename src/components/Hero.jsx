@@ -1,12 +1,15 @@
 import { profile } from "../data/content";
 import "./Hero.css";
 import LiquidAccent from './LiquidAccent';
+import { ChristmasLights } from './ChristmasAtmosphere';
 
 export default function Hero() {
   return (
     <section id="top" className="hero">
       <div className="hero__grid" aria-hidden="true" />
       <div className="container hero__content">
+        <ChristmasLights />
+        <p className="christmas-greeting"><span aria-hidden="true">✦</span> A little festive sparkle. A lot of bright ideas.</p>
         <LiquidAccent className="hero__splash" />
         <div className="hero__meta"><span className="availability"><i /> Open to internships</span><span>COLOMBO, LK · PORTFOLIO / 2026</span></div>
         <div className="hero__layout"><div className="hero__intro">

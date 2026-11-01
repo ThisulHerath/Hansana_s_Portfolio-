@@ -13,6 +13,7 @@ import './motion.css';
 import FloatingBackground from './components/FloatingBackground';
 import useScrollSection from './hooks/useScrollSection';
 import CampaignStrip from './components/CampaignStrip';
+import ChristmasAtmosphere from './components/ChristmasAtmosphere';
 
 export default function App() {
   const { activeSection, scene } = useScrollSection();
@@ -20,8 +21,9 @@ export default function App() {
   const pageRef = useRef(null);
   usePageMotion(pageRef, paused);
   return (
-    <div ref={pageRef} className="portfolio" data-motion={paused ? 'paused' : 'playing'}>
+    <div ref={pageRef} className="portfolio christmas-edition" data-motion={paused ? 'paused' : 'playing'}>
       <FloatingBackground scene={scene} paused={paused} />
+      <ChristmasAtmosphere />
       <a className="skip-link" href="#main">Skip to content</a>
       <Navbar activeSection={activeSection} />
       <main id="main" tabIndex={-1}>
